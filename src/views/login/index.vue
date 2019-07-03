@@ -1,9 +1,10 @@
 <template>
   <div class="login-container">
+    <div class="header">ZABBIX 一体化运营平台</div>
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
 
       <div class="title-container">
-        <h3 class="title">Login Form</h3>
+        <h2 class="title">用户登录</h2>
       </div>
 
       <el-form-item prop="username">
@@ -21,7 +22,7 @@
         />
       </el-form-item>
 
-      <el-form-item prop="password">
+      <el-form-item prop="password" style="margin-top: 40px;">
         <span class="svg-container">
           <svg-icon icon-class="password" />
         </span>
@@ -41,14 +42,12 @@
         </span>
       </el-form-item>
 
-      <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">Login</el-button>
-
-      <div class="tips">
-        <span style="margin-right:20px;">username: admin</span>
-        <span> password: any</span>
-      </div>
+      <el-button :loading="loading" type="success" style="width:100%;margin-top:10px;" @click.native.prevent="handleLogin">登录</el-button>
 
     </el-form>
+    <div class="copyright">
+      <p>2019 上海宏时数据系统有限公司. All Rights Reserved</p>
+    </div>
   </div>
 </template>
 
@@ -130,7 +129,6 @@ export default {
 /* Detail see https://github.com/PanJiaChen/vue-element-admin/pull/927 */
 
 $bg:#283443;
-$light_gray:#fff;
 $cursor: #fff;
 
 @supports (-webkit-mask: none) and (not (cater-color: $cursor)) {
@@ -143,7 +141,7 @@ $cursor: #fff;
 .login-container {
   .el-input {
     display: inline-block;
-    height: 47px;
+    height: 48px;
     width: 85%;
 
     input {
@@ -152,61 +150,61 @@ $cursor: #fff;
       -webkit-appearance: none;
       border-radius: 0px;
       padding: 12px 5px 12px 15px;
-      color: $light_gray;
-      height: 47px;
+      color: $cursor;
+      height: 48px;
       caret-color: $cursor;
 
       &:-webkit-autofill {
-        box-shadow: 0 0 0px 1000px $bg inset !important;
+        box-shadow: 0 0 0px 1000px #14110f inset !important;
         -webkit-text-fill-color: $cursor !important;
       }
     }
   }
 
   .el-form-item {
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     background: rgba(0, 0, 0, 0.1);
     border-radius: 5px;
-    color: #454545;
+    color: #6e6e6e;
   }
 }
 </style>
 
 <style lang="scss" scoped>
 $bg:#2d3a4b;
-$dark_gray:#889aa4;
 $light_gray:#eee;
 
 .login-container {
   min-height: 100%;
   width: 100%;
-  background-color: $bg;
+  background: $bg url(~@/assets/login_images/login_bg.png) no-repeat center center / cover;
   overflow: hidden;
+
+  .header{
+    height:80px;
+    line-height: 80px;
+    font-size:28px;
+    padding-left: 40px;
+    font-weight: bold;
+    color: white;
+    background:rgba(0,0,0,.7);
+  }
 
   .login-form {
     position: relative;
-    width: 520px;
+    background-color: rgba(0,0,0,.7);
+    border-radius: 15px;
+    width: 580px;
+    height: 360px;
     max-width: 100%;
-    padding: 160px 35px 0;
-    margin: 0 auto;
+    margin: 240px auto 0 auto;
+    padding:10px 35px 20px 35px;
     overflow: hidden;
-  }
-
-  .tips {
-    font-size: 14px;
-    color: #fff;
-    margin-bottom: 10px;
-
-    span {
-      &:first-of-type {
-        margin-right: 16px;
-      }
-    }
   }
 
   .svg-container {
     padding: 6px 5px 6px 15px;
-    color: $dark_gray;
+    color: $light_gray;
     vertical-align: middle;
     width: 30px;
     display: inline-block;
@@ -216,9 +214,8 @@ $light_gray:#eee;
     position: relative;
 
     .title {
-      font-size: 26px;
+      font-size: 28px;
       color: $light_gray;
-      margin: 0px auto 40px auto;
       text-align: center;
       font-weight: bold;
     }
@@ -229,9 +226,19 @@ $light_gray:#eee;
     right: 10px;
     top: 7px;
     font-size: 16px;
-    color: $dark_gray;
+    color: $light_gray;
     cursor: pointer;
     user-select: none;
+  }
+
+  .copyright{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    height: 3rem;
+    color: #dadada;
+    background:rgba(0,0,0,.7)
   }
 }
 </style>
