@@ -1,0 +1,19 @@
+// Import Font Awesome 5 Free
+$fa-css-prefix: 'fa';
+$fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
+
+@import '~@fortawesome/fontawesome-free/scss/fontawesome.scss';
+@import '~@fortawesome/fontawesome-free/scss/solid.scss';
+@import '~@fortawesome/fontawesome-free/scss/brands.scss';
+@import '~@fortawesome/fontawesome-free/scss/regular.scss';
+
+
+// Override Element UI's icon font
+.far
+.fas {
+  font-family: 'Font Awesome 5 Free' !important;
+}
+
+.fab {
+  font-family: 'Font Awesome 5 Brands' !important;
+}

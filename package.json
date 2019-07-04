@@ -1,8 +1,7 @@
 {
-  "name": "vue-admin-template",
+  "name": "zabbix_manager",
   "version": "4.2.1",
-  "description": "A vue admin template with Element UI & axios & iconfont & permission control & lint",
-  "author": "Pan <panfree23@gmail.com>",
+  "description": "zabbix_manager",
   "license": "MIT",
   "scripts": {
     "dev": "vue-cli-service serve",
@@ -15,6 +14,7 @@
     "svgo": "svgo -f src/icons/svg --config=src/icons/svgo.yml"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.9.0",
     "axios": "0.18.0",
     "element-ui": "2.7.2",
     "js-cookie": "2.2.0",
