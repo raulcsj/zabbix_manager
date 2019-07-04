@@ -1,6 +1,6 @@
 {
   "name": "zabbix_manager",
-  "version": "4.2.1",
+  "version": "0.0.1",
   "description": "zabbix_manager",
   "license": "MIT",
   "scripts": {
@@ -21,6 +21,7 @@
     "normalize.css": "7.0.0",
     "nprogress": "0.2.0",
     "path-to-regexp": "2.4.0",
+    "screenfull": "4.2.0",
     "vue": "2.6.10",
     "vue-router": "3.0.6",
     "vuex": "3.1.0"
