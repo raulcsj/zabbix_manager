@@ -46,7 +46,7 @@
 
     </el-form>
     <div class="copyright">
-      <p>2019 上海宏时数据系统有限公司. All Rights Reserved</p>
+      <p>©2019 上海宏时数据系统有限公司. All Rights Reserved</p>
     </div>
   </div>
 </template>
@@ -188,6 +188,7 @@ $light_gray:#eee;
     font-weight: bold;
     color: white;
     background:rgba(0,0,0,.7);
+    box-shadow: 4px 4px 10px rgba(92,186,51,.08);
   }
 
   .login-form {
