@@ -12,6 +12,8 @@ import App from './App'
 import store from './store'
 import router from './router'
 
+import * as filters from './filters' // global filters
+
 import '@/icons' // icon
 import '@/permission' // permission control
 
@@ -27,6 +29,11 @@ import { mockXHR } from '../mock'
 if (process.env.NODE_ENV === 'production') {
   mockXHR()
 }
+
+// register global utility filters
+Object.keys(filters).forEach(key => {
+  Vue.filter(key, filters[key])
+})
 
 // set ElementUI lang to EN
 Vue.use(ElementUI, { locale })
