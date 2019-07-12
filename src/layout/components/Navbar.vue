@@ -12,7 +12,7 @@
 
       <el-dropdown class="avatar-container right-menu-item hover-effect" trigger="click">
         <div class="avatar-wrapper">
-          <img src="@/assets/avatar/admin.gif" class="user-avatar">
+          <img src="@/assets/avatar/user.png" class="user-avatar">
           <i class="el-icon-caret-bottom" />
         </div>
         <el-dropdown-menu slot="dropdown">
@@ -127,16 +127,16 @@ export default {
 
           .user-avatar {
             cursor: pointer;
-            width: 40px;
-            height: 40px;
+            width: 30px;
+            height: 30px;
             border-radius: 10px;
           }
 
           .el-icon-caret-bottom {
             cursor: pointer;
             position: absolute;
-            right: -20px;
-            top: 20px;
+            right: -14px;
+            top: 10px;
             font-size: 12px;
           }
         }

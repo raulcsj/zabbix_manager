@@ -1,50 +1,63 @@
 <template>
   <div class="login-container">
-    <div class="header">ZABBIX 一体化运营平台</div>
-    <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
+    <div class="header">
+      <div><img class="zabbix-logo" src="@/assets/login_images/zabbix_logo.png" width="130" height="30" alt="zabbix"></div><div class="title">一体化运营平台</div>
+    </div>
 
-      <div class="title-container">
-        <h2 class="title">用户登录</h2>
-      </div>
+    <el-row :gutter="20">
+      <el-col :span="15">
+        <div class="slogan">
+          <h1>适合企业的监控解决方案</h1>
+          <h2>成熟的企业级监控平台，适用于多种环境</h2>
+        </div>
+      </el-col>
+      <el-col :span="9">
+        <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
 
-      <el-form-item prop="username">
-        <span class="svg-container">
-          <svg-icon icon-class="user" />
-        </span>
-        <el-input
-          ref="username"
-          v-model="loginForm.username"
-          placeholder="Username"
-          name="username"
-          type="text"
-          tabindex="1"
-          auto-complete="on"
-        />
-      </el-form-item>
+          <div class="title-container">
+            <h3 class="title">用户登录</h3>
+          </div>
 
-      <el-form-item prop="password" style="margin-top: 40px;">
-        <span class="svg-container">
-          <svg-icon icon-class="password" />
-        </span>
-        <el-input
-          :key="passwordType"
-          ref="password"
-          v-model="loginForm.password"
-          :type="passwordType"
-          placeholder="Password"
-          name="password"
-          tabindex="2"
-          auto-complete="on"
-          @keyup.enter.native="handleLogin"
-        />
-        <span class="show-pwd" @click="showPwd">
-          <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
-        </span>
-      </el-form-item>
+          <el-form-item prop="username">
+            <span class="svg-container">
+              <svg-icon icon-class="user" />
+            </span>
+            <el-input
+              ref="username"
+              v-model="loginForm.username"
+              placeholder="Username"
+              name="username"
+              type="text"
+              tabindex="1"
+              auto-complete="on"
+            />
+          </el-form-item>
 
-      <el-button :loading="loading" type="success" style="width:100%;margin-top:10px;" @click.native.prevent="handleLogin">登录</el-button>
+          <el-form-item prop="password" style="margin-top: 40px;">
+            <span class="svg-container">
+              <svg-icon icon-class="password" />
+            </span>
+            <el-input
+              :key="passwordType"
+              ref="password"
+              v-model="loginForm.password"
+              :type="passwordType"
+              placeholder="Password"
+              name="password"
+              tabindex="2"
+              auto-complete="on"
+              @keyup.enter.native="handleLogin"
+            />
+            <span class="show-pwd" @click="showPwd">
+              <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
+            </span>
+          </el-form-item>
 
-    </el-form>
+          <el-button :loading="loading" type="primary" style="width:100%;margin-top:10px;" @click.native.prevent="handleLogin">登录</el-button>
+
+        </el-form>
+      </el-col>
+    </el-row>
     <div class="copyright">
       <p>©2019 上海宏时数据系统有限公司. All Rights Reserved</p>
     </div>
@@ -129,7 +142,7 @@ export default {
 /* Detail see https://github.com/PanJiaChen/vue-element-admin/pull/927 */
 
 $bg:#283443;
-$cursor: #fff;
+$cursor: black;
 
 @supports (-webkit-mask: none) and (not (cater-color: $cursor)) {
   .login-container .el-input input {
@@ -139,6 +152,7 @@ $cursor: #fff;
 
 /* reset element-ui css */
 .login-container {
+
   .el-input {
     display: inline-block;
     height: 48px;
@@ -155,15 +169,14 @@ $cursor: #fff;
       caret-color: $cursor;
 
       &:-webkit-autofill {
-        box-shadow: 0 0 0px 1000px #14110f inset !important;
+        box-shadow: 0 0 0px 1000px white inset !important;
         -webkit-text-fill-color: $cursor !important;
       }
     }
   }
 
   .el-form-item {
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    background: rgba(0, 0, 0, 0.1);
+    border: 1px solid #dadada;
     border-radius: 5px;
     color: #6e6e6e;
   }
@@ -172,40 +185,55 @@ $cursor: #fff;
 
 <style lang="scss" scoped>
 $bg:#2d3a4b;
-$light_gray:#eee;
+$teal: #1e5286;
+$bg_color:rgba(255,255,255,1);
 
 .login-container {
   min-height: 100%;
   width: 100%;
-  background: $bg url(~@/assets/login_images/login_bg.png) no-repeat center center / cover;
+  background: $bg url(~@/assets/login_images/login_bg_1.png) no-repeat center center / cover;
   overflow: hidden;
 
   .header{
-    height:80px;
-    line-height: 80px;
-    font-size:28px;
+    height:60px;
+    line-height: 60px;
+    font-size:22px;
     padding-left: 40px;
     font-weight: bold;
-    color: white;
-    background:rgba(0,0,0,.7);
-    box-shadow: 4px 4px 10px rgba(92,186,51,.08);
+    color: $teal;
+    background:$bg_color;
+    box-shadow: 4px 4px 10px rgba(0,0,0,.2);
+    .zabbix-logo{
+      float: left;
+      margin-top: 14px;
+      margin-right: 6px;
+    }
+    .title{
+      float: left;
+    }
+  }
+
+  .slogan{
+    text-align: center;
+    margin-top: 30%;
+    color: #c6c6c6;
   }
 
   .login-form {
     position: relative;
-    background-color: rgba(0,0,0,.7);
-    border-radius: 15px;
-    width: 580px;
+    background-color: $bg_color;
+    width: 400px;
     height: 360px;
     max-width: 100%;
-    margin: 240px auto 0 auto;
+    margin-top: 30%;
     padding:10px 35px 20px 35px;
+    box-shadow: 0 20px 20px rgba(0,0,0,.2);
     overflow: hidden;
   }
 
   .svg-container {
     padding: 6px 5px 6px 15px;
-    color: $light_gray;
+    color: $teal;
     vertical-align: middle;
     width: 30px;
     display: inline-block;
@@ -215,8 +243,8 @@ $light_gray:#eee;
     position: relative;
 
     .title {
-      font-size: 28px;
-      color: $light_gray;
+      font-size: 20px;
+      color: $teal;
       text-align: center;
       font-weight: bold;
     }
@@ -227,7 +255,7 @@ $light_gray:#eee;
     right: 10px;
     top: 7px;
     font-size: 16px;
-    color: $light_gray;
+    color: $teal;
     cursor: pointer;
     user-select: none;
   }
@@ -238,8 +266,8 @@ $light_gray:#eee;
     width: 100%;
     text-align: center;
     height: 3rem;
-    color: #dadada;
-    background:rgba(0,0,0,.7)
+    color: #828282;
+    background:$bg_color
   }
 }
 </style>
