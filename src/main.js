@@ -24,14 +24,23 @@ import '@/permission' // permission control
  * please remove it before going online! ! !
  */
 import { mockXHR } from '../mock'
+
+import RouteKeepAlive from '@/components/RouteKeepAlive'
+
+import { tagsView } from '@/mixin'
+
 if (process.env.NODE_ENV === 'production') {
   mockXHR()
 }
 
-// set ElementUI lang to EN
+// set ElementUI lang to zh-CN
 Vue.use(ElementUI, { locale })
+Vue.options.components['KeepAlive'] = RouteKeepAlive.RouteKeepAlive
 
 Vue.config.productionTip = false
+
+//  增加tagsView页功能
+Vue.mixin(tagsView)
 
 new Vue({
   el: '#app',
