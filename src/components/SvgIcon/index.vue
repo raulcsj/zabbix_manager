@@ -38,7 +38,7 @@ export default {
       if (!this.isFa) {
         return `#icon-${this.iconClass}`
       } else {
-        return `${this.svgClass} ${this.iconClass}`
+        return `${this.svgClass} fa-icon ${this.iconClass}`
       }
     },
     svgClass() {
@@ -58,13 +58,20 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .svg-icon {
-  width: 1em;
-  height: 1em;
+  width: 1.2em;
+  height: 1.2em;
+  line-height: 1.2em;
+  text-align: center;
   vertical-align: -0.15em;
   fill: currentColor;
   overflow: hidden;
+}
+
+.fa-icon {
+  vertical-align: -0.35em;
+  color:inherit;
 }
 
 .svg-external-icon {
