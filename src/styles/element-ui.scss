@@ -50,3 +50,29 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
     display: block
   }
 }
+
+
+//el-row
+.el-row {
+  margin-bottom: 20px;
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+//aside
+aside {
+  background: #eef1f6;
+  padding: 8px 24px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  border-radius: 2px;
+  display: block;
+  line-height: 32px;
+  border-left: 5px solid #50bfff;
+  font-size: 16px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  color: #2c3e50;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
