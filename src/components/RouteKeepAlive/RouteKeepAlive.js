@@ -107,15 +107,17 @@ export default {
     const slot = this.$slots.default
     const vnode = getFirstComponentChild(slot)
     const componentOptions = vnode && vnode.componentOptions
+    const fullPath = this.$route.fullPath
     if (componentOptions) {
       // check pattern
       const name = getComponentName(componentOptions)
-      const { include, exclude } = this
+      const { include, exclude, pathInclude } = this
       if (
         // not included
         (include && (!name || !matches(include, name))) ||
         // excluded
-        (exclude && name && matches(exclude, name))
+        (exclude && name && matches(exclude, name)) ||
+        (exclude && fullPath && !pathInclude.includes(fullPath)) //  判断当前路由fullPath判断是否在pathInclude来决定是否缓存
       ) {
         return vnode
       }

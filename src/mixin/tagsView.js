@@ -43,6 +43,8 @@ export default {
         case 'ncnr':
           this.$router.push(location, onComplete, onAbort)
           break
+        default: // 默认cr
+          this.closeCurrentTag(location, refreshComplete, refreshAbort)
       }
     },
     closeCurrentTag(location, onComplete, onAbort) {
