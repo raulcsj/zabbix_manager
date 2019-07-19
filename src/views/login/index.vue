@@ -216,7 +216,7 @@ $bg_color:rgba(255,255,255,1);
   .slogan{
     text-align: center;
     margin-top: 30%;
-    color: #c6c6c6;
+    color: white;
   }
 
   .login-form {
