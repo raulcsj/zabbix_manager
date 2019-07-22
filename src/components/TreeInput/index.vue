@@ -2,7 +2,8 @@
   <div class="app-container">
     <el-dropdown trigger="click" placement="bottom-start">
       <el-input ref="input" v-model="selected.name" :placeholder="inputLabel" readonly />
-      <el-dropdown-menu slot="dropdown" style="width: 400px">
+      <el-dropdown-menu slot="dropdown" style="width: 400px; padding-left:10px; padding-right: 10px">
+        <el-input v-model="filterText" placeholder="输入关键字进行过滤" clearable />
         <el-dropdown-item class="no-padding">
           <el-tree
             ref="tree"
@@ -15,7 +16,6 @@
             @node-click="handleNodeClick"
           />
         </el-dropdown-item>
-        <el-input v-model="filterText" placeholder="输入关键字进行过滤" clearable />
       </el-dropdown-menu>
     </el-dropdown>
   </div>
