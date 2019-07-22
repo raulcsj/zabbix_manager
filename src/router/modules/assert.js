@@ -7,14 +7,29 @@ const assertRouter = [
     path: '/assert',
     component: Layout,
     name: 'Assert',
-    redirect: '/assert/host',
+    redirect: '/assert/host/list',
     meta: { title: '资产管理', icon: 'example' },
     children: [
       {
         path: 'host',
         name: 'Host',
-        component: () => import('@/views/assert/host'),
-        meta: { title: '主机设备管理', icon: 'fas fa-server' }
+        component: () => import('@/components/BlankRouterView'),
+        redirect: '/assert/host/list',
+        meta: { title: '主机设备管理' },
+        children: [
+          {
+            path: 'list',
+            component: () => import('@/views/assert/host/list'),
+            name: 'HostList',
+            meta: { title: '主机设备管理', icon: 'fas fa-server' }
+          },
+          {
+            path: 'create',
+            component: () => import('@/views/assert/host/create'),
+            name: 'CreateHost',
+            meta: { title: '添加主机', icon: 'edit' },
+            hidden: true
+          }]
       },
       {
         path: 'network',

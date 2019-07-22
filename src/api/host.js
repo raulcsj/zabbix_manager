@@ -16,14 +16,6 @@ export function fetchHost(id) {
   })
 }
 
-export function fetchPv(pv) {
-  return request({
-    url: '/host/pv',
-    method: 'get',
-    params: { pv }
-  })
-}
-
 export function createHost(data) {
   return request({
     url: '/host/create',

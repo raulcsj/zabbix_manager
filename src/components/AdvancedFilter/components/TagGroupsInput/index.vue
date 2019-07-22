@@ -5,7 +5,7 @@
       {
         'el-input-group': $slots.prepend || $slots.append,
         'el-input-group--append': $slots.append,
-        'el-input-group--prepend': $slots.prepend,
+        'el-input-group--prepend': $slots.prepend
       }
     ]"
   >
@@ -36,7 +36,8 @@
   }
 
   .group{
-    min-height: 40px;
+    height: 40px;
+    width: 100%;
   }
 </style>
 

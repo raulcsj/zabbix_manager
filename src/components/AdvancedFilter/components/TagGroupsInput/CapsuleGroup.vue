@@ -1,5 +1,8 @@
 <template>
   <div class="groups-container">
+    <div v-if="groups.length === 0" style="color: #ccc;">
+      请选择常用或者点击右侧+选择条件
+    </div>
     <div v-for="(group,groupIndex) in groups" :key="groupIndex" class="capsule-group">
       <div class="capsule-avatar">或</div>
       <div v-for="(item,itemIndex) in group" :key="itemIndex">
