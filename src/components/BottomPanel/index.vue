@@ -51,7 +51,9 @@ export default {
   },
   beforeDestroy() {
     const elx = this.$refs.bottomPanel
-    elx.remove()
+    if (elx) {
+      elx.remove()
+    }
   },
   methods: {
     closeSidebar(evt) {

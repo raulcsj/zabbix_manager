@@ -21,9 +21,6 @@
         </el-col>
       </el-row>
     </sticky>
-    <!--<bottom-panel v-model="showBottomPanel" title="条件选择" title-icon="fas fa-hand-pointer">-->
-      <!--<condition-select v-model="advancedFilterConditions" :field-options="fieldOptions" @cancel="showBottomPanel = false" />-->
-    <!--</bottom-panel>-->
     <div class="app-container">
       <el-table
         :key="tableKey"
@@ -128,14 +125,12 @@ import { parseTime } from '@/utils'
 import Pagination from '@/components/Pagination' // secondary package based on el-pagination
 import AdvancedFilter from '@/components/AdvancedFilter' // secondary package based on el-pagination
 
-import BottomPanel from '@/components/BottomPanel'
-import ConditionSelect from '@/components/AdvancedFilter/components/ConditionSelect'
-
 export default {
   name: 'HostListTable',
   components: {
-    BottomPanel,
-    ConditionSelect, Pagination, AdvancedFilter, Sticky },
+    Pagination,
+    AdvancedFilter,
+    Sticky },
   directives: { waves },
   filters: {
     statusFilter(status) {
