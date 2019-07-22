@@ -35,6 +35,12 @@ const exampleRouter = [
         meta: { title: 'Form', icon: 'form' }
       },
       {
+        path: 'treeInput',
+        name: 'TreeInput',
+        component: () => import('@/views/example/TreeInput'),
+        meta: { title: 'TreeInput', icon: 'tree' }
+      },
+      {
         path: 'nested',
         component: () => import('@/components/BlankRouterView'),
         name: 'Nested',
@@ -107,7 +113,7 @@ const exampleRouter = [
             name: 'TagsViewExamplePage',
             component: () => import('@/views/example/TagsView/example'),
             hidden: true,
-            meta: { title: 'TagsView测试页面', icon: 'fas fa-tags'}
+            meta: { title: 'TagsView测试页面', icon: 'fas fa-tags' }
           }
         ]
       },

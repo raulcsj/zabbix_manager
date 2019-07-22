@@ -32,6 +32,10 @@ html {
   box-sizing: inherit;
 }
 
+.no-padding {
+  padding: 0px !important;
+}
+
 a:focus,
 a:active {
   outline: none;
