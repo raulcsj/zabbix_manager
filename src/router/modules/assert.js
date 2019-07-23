@@ -29,6 +29,14 @@ const assertRouter = [
             name: 'CreateHost',
             meta: { title: '添加主机', icon: 'edit' },
             hidden: true
+          },
+          {
+            path: 'edit/:id',
+            component: () => import('@/views/assert/host/edit'),
+            name: 'EditHost',
+            meta: { title: '编辑主机', icon: 'edit' },
+            props: true,
+            hidden: true
           }]
       },
       {

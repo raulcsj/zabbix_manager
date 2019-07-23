@@ -1,5 +1,5 @@
 <template>
-  <div class="groups-container">
+  <div class="groups-container" @click="handleClick">
     <div v-if="groups.length === 0" style="color: #ccc;">
       请选择常用或者点击右侧+选择条件
     </div>
@@ -8,19 +8,19 @@
       <div v-for="(item,itemIndex) in group" :key="itemIndex">
         <div class="capsule">
           <div v-if="item.type === 'date'">
-            <div>{{ item.field + ' ' + item.conditionLabel }} {{ item.value | parseTime('{y}-{m}-{d}') }}</div>
+            <div>{{ item.label + ' ' + item.conditionLabel }} {{ item.value | parseTime('{y}-{m}-{d}') }}</div>
           </div>
           <div v-else-if="item.type === 'datetime'">
-            <div>{{ item.field + ' ' + item.conditionLabel }} {{ item.value | parseTime('{y}-{m}-{d} {h}:{i}:{s}') }}</div>
+            <div>{{ item.label + ' ' + item.conditionLabel }} {{ item.value | parseTime('{y}-{m}-{d} {h}:{i}:{s}') }}</div>
           </div>
           <div v-else-if="item.type === 'daterange'">
-            <div>{{ item.field + ' ' + item.conditionLabel }} {{ parseDateRange(item.value,'{y}-{m}-{d}') }}</div>
+            <div>{{ item.label + ' ' + item.conditionLabel }} {{ parseDateRange(item.value,'{y}-{m}-{d}') }}</div>
           </div>
           <div v-else-if="item.type === 'datetimerange'">
-            <div>{{ item.field + ' ' + item.conditionLabel }} {{ parseDateRange(item.value,'{y}-{m}-{d} {h}:{i}:{s}') }}</div>
+            <div>{{ item.label + ' ' + item.conditionLabel }} {{ parseDateRange(item.value,'{y}-{m}-{d} {h}:{i}:{s}') }}</div>
           </div>
           <div v-else>
-            <div>{{ item.field + ' ' + item.conditionLabel }} {{ item.value }}</div>
+            <div>{{ item.label + ' ' + item.conditionLabel }} {{ item.value }}</div>
           </div>
         </div>
       </div>
@@ -68,6 +68,9 @@ export default {
         retVal.push(parseTime(item, cformat))
       })
       return retVal
+    },
+    handleClick() {
+      this.$emit('click')
     }
   }
 }
@@ -79,6 +82,7 @@ export default {
     flex-direction: row;
     flex-wrap: wrap;
     word-break:normal;
+    cursor: pointer;
   }
 
   .capsule-group {

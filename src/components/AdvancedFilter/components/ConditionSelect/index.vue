@@ -201,7 +201,10 @@ export default {
         val.forEach((group) => {
           group.forEach((groupItem) => {
             const filterFields = this.fieldOptions.filter((fieldOption) => fieldOption.value === groupItem.field)
-            filterFields.length > 0 ? groupItem.type = filterFields[0].type : 'string'
+            if (filterFields.length > 0) {
+              groupItem.type = filterFields[0].type ? filterFields[0].type : 'string'
+              groupItem.label = filterFields[0].label ? filterFields[0].label : ''
+            }
             const filterConditions = this.conditionOptions.filter((conditionOption) => conditionOption.value === groupItem.condition)
             filterConditions.length > 0 ? groupItem.conditionLabel = filterConditions[0].label : ''
           })

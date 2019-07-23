@@ -6,7 +6,7 @@ const count = 100
 for (let i = 0; i < count; i++) {
   List.push(Mock.mock({
     id: '@increment',
-    ip: '@ip',
+    'ip': '@shuffle(["@ip", "@ip"])',
     dataSource: '@ctitle',
     'operatorSystem|1': ['Windows', 'Linux OS', 'Unix Os'],
     hostId: '@integer(300, 5000)',
@@ -26,14 +26,25 @@ export default [
     url: '/host/list',
     type: 'get',
     response: config => {
-      const { importance, type, title, page = 1, limit = 20, sort } = config.query
+      const { advancedFilterConditions, page = 1, limit = 20, sort } = config.query
 
-      let mockList = List.filter(item => {
-        if (importance && item.importance !== +importance) return false
-        if (type && item.type !== type) return false
-        if (title && item.title.indexOf(title) < 0) return false
-        return true
-      })
+      let mockList = []
+
+      if (advancedFilterConditions && advancedFilterConditions.length > 0) {
+        advancedFilterConditions.forEach((filter) => {
+          const orFilter = JSON.parse(filter)
+          const orMockList = List.filter(listItem => {
+            let matchItem = true
+            orFilter.forEach((filterItem) => {
+              if (listItem[filterItem.field].indexOf(filterItem.value) < 0) matchItem = false
+            })
+            return matchItem
+          })
+          mockList = mockList.concat(orMockList)
+        })
+      } else {
+        mockList = List
+      }
 
       if (sort === '-id') {
         mockList = mockList.reverse()

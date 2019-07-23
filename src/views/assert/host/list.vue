@@ -3,7 +3,11 @@
     <sticky :z-index="100" :sticky-top="stickyTop" :class-name="'sub-navbar draft'">
       <el-row :gutter="20">
         <el-col :span="20">
-          <advanced-filter v-model="advancedFilterConditions" :field-options="fieldOptions" @add="showBottomPanel = true" />
+          <advanced-filter
+            v-model="advancedFilterConditions"
+            :field-options="fieldOptions"
+            @search="advancedSearch"
+          />
         </el-col>
         <el-col :span="4" style="text-align: right">
           <el-button icon="fas fa-plus" :disabled="listLoading" @click="handleCreate">
@@ -37,7 +41,7 @@
             <span>{{ row.hostName }}</span>
           </template>
         </el-table-column>
-        <el-table-column label="主机ip">
+        <el-table-column label="主机ip" :show-overflow-tooltip="true">
           <template slot-scope="{row}">
             <span>{{ row.ip }}</span>
           </template>
@@ -96,8 +100,8 @@
         </el-table-column>
         <el-table-column label="操作" align="center" width="140">
           <template slot-scope="{row}">
-            <el-button type="primary" size="mini" icon="el-icon-edit" />
-            <el-button type="danger" size="mini" icon="el-icon-delete" @click="handleModifyStatus(row,'deleted')" />
+            <el-button type="primary" size="mini" icon="el-icon-edit" @click="handleEdit(row)" />
+            <el-button type="danger" size="mini" icon="el-icon-delete" @click="handleDelete(row)" />
           </template>
         </el-table-column>
       </el-table>
@@ -130,7 +134,8 @@ export default {
   components: {
     Pagination,
     AdvancedFilter,
-    Sticky },
+    Sticky
+  },
   directives: { waves },
   filters: {
     statusFilter(status) {
@@ -156,17 +161,17 @@ export default {
       },
       downloadLoading: false,
       fieldOptions: [{
-        value: 'timestamp',
-        label: 'Date',
-        type: 'daterange'
-      }, {
-        value: 'title',
-        label: 'Title',
+        value: 'hostName',
+        label: '主机名',
         type: 'string'
       }, {
-        value: 'author',
-        label: 'Author',
+        value: 'ip',
+        label: '主机ip',
         type: 'string'
+      }, {
+        value: 'paytime',
+        label: '支付时间',
+        type: 'datetime'
       }],
       advancedFilterConditions: []
     }
@@ -187,12 +192,14 @@ export default {
         }, 1.5 * 1000)
       })
     },
-    handleModifyStatus(row, status) {
+    handleEdit(row) {
+      this.$open({ name: 'EditHost', params: { id: String(row.id) }}, 'ncnr')
+    },
+    handleDelete() {
       this.$message({
         message: '操作Success',
         type: 'success'
       })
-      row.status = status
     },
     handleCreate() {
       this.$open({ name: 'CreateHost' }, 'ncr')
@@ -219,6 +226,15 @@ export default {
           return v[j]
         }
       }))
+    },
+    advancedSearch() {
+      if (this.advancedFilterConditions.length === 0) {
+        this.$message('请选择至少一个条件!')
+      } else {
+        this.listQuery.advancedFilterConditions = this.advancedFilterConditions
+        this.listQuery.page = 1
+        this.getList()
+      }
     }
   }
 }

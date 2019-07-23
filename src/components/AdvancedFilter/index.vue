@@ -1,16 +1,16 @@
 <template>
-  <div>
+  <div class="advanced-filter-container">
     <tag-groups-input class="input-with-select">
-      <el-select slot="prepend" v-model="select" placeholder="请选择常用">
+      <el-select slot="prepend" v-model="select" clearable placeholder="请选择常用">
         <el-option label="餐厅名" value="1" />
         <el-option label="订单号" value="2" />
         <el-option label="用户电话" value="3" />
       </el-select>
       <slot slot="inner">
-        <capsule-group v-model="selectedCondition" />
+        <capsule-group v-model="selectedCondition" @click="handleCreate" />
       </slot>
       <el-button slot="append" icon="el-icon-plus" @click="handleCreate" />
-      <el-button slot="append" icon="el-icon-search" />
+      <el-button slot="append" icon="el-icon-search" @click="handleSearch" />
     </tag-groups-input>
     <bottom-panel v-model="show" title="条件选择" title-icon="fas fa-hand-pointer">
       <condition-select v-model="selectedCondition" :field-options="fieldOptions" @cancel="cancelSelect" />
@@ -18,15 +18,18 @@
   </div>
 </template>
 
-<style lang="scss" scoped>
-  .input-with-select{
+<style lang="scss">
+  .input-with-select {
     .el-select {
-      width: 130px;
+      .el-input {
+        width: 200px;
+      }
     }
-    .el-input{
-      width: 130px;
+    .el-input-group__prepend {
+      background-color: #fff;
     }
   }
+
 </style>
 
 <script>
@@ -47,11 +50,15 @@ export default {
   props: {
     value: {
       type: Array,
-      default: function() { return [] }
+      default: function() {
+        return []
+      }
     },
     fieldOptions: {
       type: Array,
-      default: function() { return [] }
+      default: function() {
+        return []
+      }
     }
   },
   data() {
@@ -75,6 +82,9 @@ export default {
     },
     cancelSelect() {
       this.show = false
+    },
+    handleSearch() {
+      this.$emit('search')
     }
   }
 

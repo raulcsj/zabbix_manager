@@ -8,17 +8,17 @@
     <div class="app-container">
       <el-tabs v-model="activeName" @tab-click="handleClick">
         <el-tab-pane label="基本信息" name="first">
-          <el-form label-position="right" :rules="rules" label-width="120px" :model="temp">
+          <el-form label-position="right" :rules="rules" label-width="120px" :model="postForm">
             <el-row>
               <el-col :span="8">
                 <el-form-item label="主机名" prop="hostName">
-                  <el-input v-model="temp.hostName" clearable class="full-width" />
+                  <el-input v-model="postForm.hostName" clearable class="full-width" />
                 </el-form-item>
               </el-col>
               <el-col :span="8">
                 <el-form-item label="ip" prop="ip">
                   <el-select
-                    v-model="temp.ip"
+                    v-model="postForm.ip"
                     multiple
                     filterable
                     allow-create
@@ -31,53 +31,42 @@
                 </el-form-item>
               </el-col>
               <el-col :span="8">
-                <el-form-item label="数据源" prop="type">
-                  <el-select v-model="temp.type" clearable class="filter-item full-width" placeholder="">
-                    <el-option
-                      v-for="item in calendarTypeOptions"
-                      :key="item.key"
-                      :label="item.display_name"
-                      :value="item.key"
-                    />
-                  </el-select>
+                <el-form-item label="数据源" prop="dataSource">
+                  <el-input v-model="postForm.dataSource" clearable class="full-width" />
                 </el-form-item>
               </el-col>
             </el-row>
             <el-row>
               <el-col :span="8">
-                <el-form-item label="服务器类型" prop="type">
-                  <el-select v-model="temp.type" clearable class="filter-item full-width" placeholder="">
-                    <el-option
-                      v-for="item in calendarTypeOptions"
-                      :key="item.key"
-                      :label="item.display_name"
-                      :value="item.key"
-                    />
-                  </el-select>
+                <el-form-item label="操作系统" prop="operatorSystem">
+                  <el-input v-model="postForm.operatorSystem" clearable class="full-width" />
                 </el-form-item>
               </el-col>
               <el-col :span="8">
-                <el-form-item label="主机类型" prop="type">
-                  <el-select v-model="temp.type" clearable class="filter-item full-width" placeholder="">
-                    <el-option
-                      v-for="item in calendarTypeOptions"
-                      :key="item.key"
-                      :label="item.display_name"
-                      :value="item.key"
-                    />
-                  </el-select>
+                <el-form-item label="hostId" prop="hostId">
+                  <el-input v-model="postForm.hostId" clearable class="full-width" />
                 </el-form-item>
               </el-col>
               <el-col :span="8">
-                <el-form-item label="状态" prop="type">
-                  <el-select v-model="temp.type" clearable class="filter-item full-width" placeholder="">
-                    <el-option
-                      v-for="item in calendarTypeOptions"
-                      :key="item.key"
-                      :label="item.display_name"
-                      :value="item.key"
-                    />
-                  </el-select>
+                <el-form-item label="厂商" prop="vendor">
+                  <el-input v-model="postForm.vendor" clearable class="full-width" />
+                </el-form-item>
+              </el-col>
+            </el-row>
+            <el-row>
+              <el-col :span="8">
+                <el-form-item label="服务器类型" prop="serverType">
+                  <el-input v-model="postForm.serverType" clearable class="full-width" />
+                </el-form-item>
+              </el-col>
+              <el-col :span="8">
+                <el-form-item label="级别" prop="level">
+                  <el-input v-model="postForm.level" clearable class="full-width" />
+                </el-form-item>
+              </el-col>
+              <el-col :span="8">
+                <el-form-item label="状态" prop="status">
+                  <el-input v-model="postForm.status" clearable class="full-width" />
                 </el-form-item>
               </el-col>
             </el-row>
@@ -93,6 +82,22 @@
 
 <script>
 import Sticky from '@/components/Sticky' // 粘性header组件
+import { fetchHost } from '@/api/host'
+
+const defaultForm = {
+  ip: [],
+  dataSource: '',
+  operatorSystem: '',
+  hostId: '',
+  vendor: '',
+  serverType: '',
+  level: '',
+  application: '',
+  status: '',
+  hostName: '',
+  middleWareType: '',
+  payTime: ''
+}
 
 const calendarTypeOptions = [
   { key: 'CN', display_name: 'China' },
@@ -106,23 +111,34 @@ export default {
   components: {
     Sticky
   },
+  props: {
+    id: {
+      type: String,
+      default: ''
+    }
+  },
   data() {
     return {
+      postForm: Object.assign({}, defaultForm),
       popperAppendToBody: false,
       popperClass: 'hidden-popper',
       stickyTop: 80,
       activeName: 'first',
-      temp: {
-        id: undefined,
-        hostName: '',
-        type: '',
-        ip: []
-      },
       calendarTypeOptions,
       rules: {}
     }
   },
+  created() {
+    this.fetchData(this.id)
+  },
   methods: {
+    fetchData(id) {
+      fetchHost(id).then(response => {
+        this.postForm = response.data
+      }).catch(err => {
+        console.log(err)
+      })
+    },
     save() {
       this.$open({ name: 'HostList' }, 'cr')
     },
