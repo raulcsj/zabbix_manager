@@ -35,24 +35,6 @@ export default {
       default: 500
     }
   },
-  data() {
-    return {
-      activeIndex: '1'
-    }
-  },
-  computed: {
-    theme: {
-      get() {
-        return this.$store.state.settings.theme
-      },
-      set(val) {
-        this.$store.dispatch('settings/changeSetting', {
-          key: 'theme',
-          value: val
-        })
-      }
-    }
-  },
   beforeDestroy() {
     const elx = this.$refs.bottomPanel
     if (elx) {

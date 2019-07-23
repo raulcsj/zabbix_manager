@@ -1,9 +1,11 @@
 <template>
   <div>
     <sticky :z-index="100" :sticky-top="stickyTop" :class-name="'sub-navbar draft'">
-      <el-button icon="fas fa-save" @click="save">
-        保存
-      </el-button>
+      <div style="width: 100%;text-align: right">
+        <el-button icon="fas fa-save" @click="save">
+          保存
+        </el-button>
+      </div>
     </sticky>
     <div class="app-container">
       <el-tabs v-model="activeName" @tab-click="handleClick">
@@ -99,13 +101,6 @@ const defaultForm = {
   payTime: ''
 }
 
-const calendarTypeOptions = [
-  { key: 'CN', display_name: 'China' },
-  { key: 'US', display_name: 'USA' },
-  { key: 'JP', display_name: 'Japan' },
-  { key: 'EU', display_name: 'Eurozone' }
-]
-
 export default {
   name: 'CreateHost',
   components: {
@@ -122,9 +117,8 @@ export default {
       postForm: Object.assign({}, defaultForm),
       popperAppendToBody: false,
       popperClass: 'hidden-popper',
-      stickyTop: 80,
+      stickyTop: 83,
       activeName: 'first',
-      calendarTypeOptions,
       rules: {}
     }
   },

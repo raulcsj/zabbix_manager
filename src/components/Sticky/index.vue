@@ -54,11 +54,6 @@ export default {
       }
     }
   },
-  watch: {
-    // sidebar_opened(opened) {
-    //   this.toggleSidebar(opened)
-    // }
-  },
   mounted() {
     this.height = this.$el.getBoundingClientRect().height
     window.addEventListener('scroll', this.handleScroll)
