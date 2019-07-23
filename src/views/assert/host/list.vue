@@ -145,7 +145,7 @@ export default {
   data() {
     return {
       showBottomPanel: false,
-      stickyTop: 80,
+      stickyTop: 83,
       tableKey: 0,
       list: null,
       total: 0,

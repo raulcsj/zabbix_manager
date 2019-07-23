@@ -1,8 +1,9 @@
 <template>
   <div :style="{height:height+'px',zIndex:zIndex}">
     <div
-      :class="className"
-      :style="{top:(isSticky ? stickyTop +'px' : ''),zIndex:zIndex,position:position,width:width,height:height+'px'}"
+      class=""
+      :class="classObj"
+      :style="{top:(isSticky ? stickyTop +'px' : ''),zIndex:zIndex,height:height+'px'}"
     >
       <slot>
         <div>sticky</div>
@@ -12,6 +13,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   name: 'Sticky',
   props: {
@@ -37,6 +40,25 @@ export default {
       isSticky: false
     }
   },
+  computed: {
+    ...mapState({
+      sidebar_opened: state => state.app.sidebar.opened
+    }),
+    classObj() {
+      return {
+        [this.className]: true,
+        toppedSticky: !this.isSticky,
+        fixedSticky: this.isSticky,
+        hideSidebar: !this.sidebar_opened,
+        openSidebar: this.sidebar_opened
+      }
+    }
+  },
+  watch: {
+    // sidebar_opened(opened) {
+    //   this.toggleSidebar(opened)
+    // }
+  },
   mounted() {
     this.height = this.$el.getBoundingClientRect().height
     window.addEventListener('scroll', this.handleScroll)
@@ -54,9 +76,7 @@ export default {
       if (this.active) {
         return
       }
-      this.position = 'fixed'
       this.active = true
-      this.width = this.width + 'px'
       this.isSticky = true
     },
     handleReset() {
@@ -66,14 +86,10 @@ export default {
       this.reset()
     },
     reset() {
-      this.position = ''
-      this.width = 'auto'
       this.active = false
       this.isSticky = false
     },
     handleScroll() {
-      const width = this.$el.getBoundingClientRect().width
-      this.width = width || 'auto'
       const offsetTop = this.$el.getBoundingClientRect().top
       if (offsetTop < this.stickyTop) {
         this.sticky()
@@ -89,3 +105,24 @@ export default {
   }
 }
 </script>
+<style type="scss" scoped>
+  .hideSidebar {
+    width: calc(100% - 54px);
+    transition: width 0.28s;
+  }
+
+  .openSidebar {
+    width: calc(100% - 210px);
+    transition: width 0.28s;
+  }
+
+  .fixedSticky {
+    position: fixed;
+    right: 0
+  }
+
+  .toppedSticky {
+    width: auto;
+    position: relative;
+  }
+</style>
