@@ -11,13 +11,16 @@
             <div>{{ item.label + ' ' + item.conditionLabel }} {{ item.value | parseTime('{y}-{m}-{d}') }}</div>
           </div>
           <div v-else-if="item.type === 'datetime'">
-            <div>{{ item.label + ' ' + item.conditionLabel }} {{ item.value | parseTime('{y}-{m}-{d} {h}:{i}:{s}') }}</div>
+            <div>{{ item.label + ' ' + item.conditionLabel }} {{ item.value | parseTime('{y}-{m}-{d} {h}:{i}:{s}') }}
+            </div>
           </div>
           <div v-else-if="item.type === 'daterange'">
             <div>{{ item.label + ' ' + item.conditionLabel }} {{ parseDateRange(item.value,'{y}-{m}-{d}') }}</div>
           </div>
           <div v-else-if="item.type === 'datetimerange'">
-            <div>{{ item.label + ' ' + item.conditionLabel }} {{ parseDateRange(item.value,'{y}-{m}-{d} {h}:{i}:{s}') }}</div>
+            <div>{{ item.label + ' ' + item.conditionLabel }} {{ parseDateRange(item.value,'{y}-{m}-{d} {h}:{i}:{s}')
+            }}
+            </div>
           </div>
           <div v-else>
             <div>{{ item.label + ' ' + item.conditionLabel }} {{ item.value }}</div>
@@ -77,11 +80,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .groups-container{
+  .groups-container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    word-break:normal;
     cursor: pointer;
   }
 
@@ -89,9 +91,9 @@ export default {
     display: flex;
     background-color: #d0d4dd;
     border-radius: 15px;
-    line-height: 30px;
+    line-height: 32px;
     height: 30px;
-    margin: 5px 5px 5px 0;
+    margin: 6px 5px 5px 0;
     padding: 0 5px;
     .capsule-avatar {
       background-color: #e7e9ec;
@@ -106,10 +108,10 @@ export default {
   .capsule {
     background-color: #e7e9ec;
     border-radius: 10px;
-    line-height: 20px;
-    height: 20px;
+    line-height: 22px;
+    height: 22px;
     margin: 5px 4px 0 0;
     padding: 0 10px;
-    display: flex;
+    overflow: hidden;
   }
 </style>

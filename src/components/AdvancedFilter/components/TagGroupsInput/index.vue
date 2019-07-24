@@ -36,7 +36,6 @@
   }
 
   .group{
-    height: 40px;
     width: 100%;
   }
 </style>
