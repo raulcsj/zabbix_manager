@@ -2,14 +2,14 @@
   <div>
     <sticky :z-index="100" :sticky-top="stickyTop" :class-name="'sub-navbar'">
       <el-row :gutter="20">
-        <el-col :xs="16" :sm="16" :md="16" :lg="20" :xl="20">
+        <el-col :xs="16" :sm="16" :md="16" :lg="18" :xl="20">
           <advanced-filter
             v-model="advancedFilterConditions"
             :field-options="fieldOptions"
             @search="advancedSearch"
           />
         </el-col>
-        <el-col :xs="8" :sm="8" :md="8" :lg="4" :xl="4" style="text-align: right">
+        <el-col :xs="8" :sm="8" :md="8" :lg="6" :xl="4" style="text-align: right">
           <el-button icon="fas fa-plus" :disabled="listLoading" @click="handleCreate">
             新增
           </el-button>
@@ -167,7 +167,7 @@ export default {
       }, {
         value: 'paytime',
         label: '支付时间',
-        type: 'datetime'
+        type: 'datetimerange'
       }],
       advancedFilterConditions: []
     }

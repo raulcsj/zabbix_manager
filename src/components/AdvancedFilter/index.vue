@@ -1,5 +1,5 @@
 <template>
-  <div class="advanced-filter-container">
+  <div class="advanced-filter-container" style="width:100%;overflow: hidden">
     <tag-groups-input class="input-with-select">
       <el-select slot="prepend" v-model="select" clearable placeholder="请选择常用">
         <el-option label="餐厅名" value="1" />

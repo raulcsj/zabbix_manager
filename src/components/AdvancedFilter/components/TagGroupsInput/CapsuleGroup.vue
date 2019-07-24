@@ -1,7 +1,7 @@
 <template>
   <div class="groups-container" @click="handleClick">
-    <div v-if="groups.length === 0" style="color: #ccc;">
-      请选择常用或者点击右侧+选择条件
+    <div v-if="groups.length === 0" style="color: #ccc">
+      请选择...
     </div>
     <div v-for="(group,groupIndex) in groups" :key="groupIndex" class="capsule-group">
       <div class="capsule-avatar">或</div>
@@ -83,12 +83,14 @@ export default {
   .groups-container {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     cursor: pointer;
+    overflow: hidden;
   }
 
   .capsule-group {
     display: flex;
+    flex-wrap: wrap;
     background-color: #d0d4dd;
     border-radius: 15px;
     line-height: 32px;
@@ -112,6 +114,7 @@ export default {
     height: 22px;
     margin: 5px 4px 0 0;
     padding: 0 10px;
+    max-width:475px;
     overflow: hidden;
   }
 </style>

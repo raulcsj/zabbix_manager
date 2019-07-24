@@ -32,7 +32,7 @@
     color:#606266;
     line-height:40px;
     padding:0 15px;
-    width:100%
+    overflow: hidden;
   }
 
   .group{
