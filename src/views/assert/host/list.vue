@@ -98,7 +98,7 @@
             <span>{{ row.payTime | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
           </template>
         </el-table-column>
-        <el-table-column label="操作" align="center" width="140">
+        <el-table-column label="操作" align="center" width="140" fixed="right">
           <template slot-scope="{row}">
             <el-button type="primary" size="mini" icon="el-icon-edit" @click="handleEdit(row)" />
             <el-button type="danger" size="mini" icon="el-icon-delete" @click="handleDelete(row)" />
