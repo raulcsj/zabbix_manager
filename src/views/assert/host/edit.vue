@@ -1,6 +1,6 @@
 <template>
   <div>
-    <sticky :z-index="100" :sticky-top="stickyTop" :class-name="'sub-navbar draft'">
+    <sticky :z-index="100" :sticky-top="stickyTop" :class-name="'sub-navbar'">
       <div style="width: 100%;text-align: right">
         <el-button icon="fas fa-save" @click="save">
           保存
@@ -117,7 +117,7 @@ export default {
       postForm: Object.assign({}, defaultForm),
       popperAppendToBody: false,
       popperClass: 'hidden-popper',
-      stickyTop: 83,
+      stickyTop: 82,
       activeName: 'first',
       rules: {}
     }

@@ -1,7 +1,7 @@
 <template>
   <div :style="{height:height+'px',zIndex:zIndex}">
     <div
-      class=""
+      class="sticky-container"
       :class="classObj"
       :style="{top:(isSticky ? stickyTop +'px' : ''),zIndex:zIndex,height:height+'px'}"
     >

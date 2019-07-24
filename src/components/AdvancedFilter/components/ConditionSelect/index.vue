@@ -191,6 +191,11 @@ export default {
     }
   },
   watch: {
+    value: {
+      handler: function(val) {
+        this.groups = val
+      }
+    },
     groups: {
       handler: function(val) {
         val.forEach((group) => {

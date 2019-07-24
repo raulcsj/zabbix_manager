@@ -12,11 +12,17 @@
       <el-button slot="append" icon="el-icon-plus" @click="handleCreate" />
       <el-button slot="append" icon="el-icon-search" @click="handleSearch" />
     </tag-groups-input>
-    <bottom-panel :visible.sync="show" title="条件选择" title-icon="fas fa-hand-pointer">
+    <bottom-panel :visible.sync="show" title="条件选择" title-icon="fas fa-list">
       <condition-select v-model="selectedCondition" :field-options="fieldOptions" @cancel="cancelSelect" />
       <div slot="footer">
-        <el-button @click.stop="cancelSelect">
-          取消
+        <el-button @click.stop="clearSelect">
+          清空
+        </el-button>
+        <el-button type="primary" @click.stop="cancelSelect">
+          确定
+        </el-button>
+        <el-button type="primary" @click.stop="openSaveMessageBox">
+          保存
         </el-button>
       </div>
     </bottom-panel>
@@ -87,6 +93,26 @@ export default {
     },
     cancelSelect() {
       this.show = false
+    },
+    clearSelect() {
+      this.selectedCondition = []
+      this.$emit('input', [])
+    },
+    openSaveMessageBox() {
+      this.$prompt('请输入名称', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消'
+      }).then(({ value }) => {
+        this.$message({
+          type: 'success',
+          message: '保存成功!'
+        })
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '取消输入'
+        })
+      })
     },
     handleSearch() {
       this.$emit('search')

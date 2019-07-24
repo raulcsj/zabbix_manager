@@ -1,6 +1,6 @@
 <template>
   <div>
-    <sticky :z-index="100" :sticky-top="stickyTop" :class-name="'sub-navbar draft'">
+    <sticky :z-index="100" :sticky-top="stickyTop" :class-name="'sub-navbar'">
       <el-row :gutter="20">
         <el-col :span="20">
           <advanced-filter
@@ -132,7 +132,6 @@ export default {
     AdvancedFilter,
     Sticky
   },
-  directives: { waves },
   filters: {
     statusFilter(status) {
       const statusMap = {
@@ -143,10 +142,11 @@ export default {
       return statusMap[status]
     }
   },
+  directives: { waves },
   data() {
     return {
       showBottomPanel: false,
-      stickyTop: 83,
+      stickyTop: 84,
       tableKey: 0,
       list: null,
       total: 0,
