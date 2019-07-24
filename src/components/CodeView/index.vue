@@ -16,7 +16,8 @@ export default {
   /* eslint-disable vue/require-prop-types */
   props: {
     value: {
-      type: String
+      type: String,
+      default: ''
     },
     mode: {
       type: String,
@@ -47,10 +48,10 @@ export default {
 }
 .json-editor >>> .CodeMirror {
   height: auto;
-  min-height: 300px;
+  min-height: 100px;
 }
 .json-editor >>> .CodeMirror-scroll{
-  min-height: 300px;
+  min-height: 100px;
 }
 .json-editor >>> .cm-s-rubyblue span.cm-string {
   color: #F08047;

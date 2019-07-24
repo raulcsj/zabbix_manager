@@ -1,5 +1,5 @@
 <template>
-  <div :class="{show:value}" class="bottomPanel-container">
+  <div :class="{show:visible}" class="bottomPanel-container" :style="{visibility: visible?'visible':'hidden'}">
     <div class="bottomPanel-background" @click.stop="closeSidebar" />
     <div class="bottomPanel">
       <el-tabs type="border-card">
@@ -7,6 +7,9 @@
           <span slot="label"><i :class="titleIcon" /> {{ title }}</span>
           <div class="bottomPanel-items" :style="{height:height + 'px'}">
             <slot />
+          </div>
+          <div class="bottomPanel-footer">
+            <slot name="footer" />
           </div>
         </el-tab-pane>
       </el-tabs>
@@ -18,7 +21,7 @@
 export default {
   name: 'BottomPanel',
   props: {
-    value: {
+    visible: {
       type: Boolean,
       default: false
     },
@@ -32,7 +35,7 @@ export default {
     },
     height: {
       type: Number,
-      default: 500
+      default: 400
     }
   },
   beforeDestroy() {
@@ -45,7 +48,7 @@ export default {
     closeSidebar(evt) {
       const parent = evt.target.closest('.bottomPanel')
       if (!parent) {
-        this.$emit('input', false)
+        this.$emit('update:visible', false)
       }
     }
   }
@@ -78,7 +81,6 @@ export default {
   }
 
   .show {
-    transition: all .3s cubic-bezier(.3, .7, .1, 1);
     .bottomPanel-background {
       z-index: 1997;
       opacity: 1;
@@ -90,5 +92,9 @@ export default {
       transform: translate(0, 0);
       z-index: 1998;
     }
+  }
+
+  .bottomPanel-footer{
+    text-align: right;
   }
 </style>

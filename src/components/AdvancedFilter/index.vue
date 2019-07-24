@@ -12,8 +12,13 @@
       <el-button slot="append" icon="el-icon-plus" @click="handleCreate" />
       <el-button slot="append" icon="el-icon-search" @click="handleSearch" />
     </tag-groups-input>
-    <bottom-panel v-model="show" title="条件选择" title-icon="fas fa-hand-pointer">
+    <bottom-panel :visible.sync="show" title="条件选择" title-icon="fas fa-hand-pointer">
       <condition-select v-model="selectedCondition" :field-options="fieldOptions" @cancel="cancelSelect" />
+      <div slot="footer">
+        <el-button @click.stop="cancelSelect">
+          取消
+        </el-button>
+      </div>
     </bottom-panel>
   </div>
 </template>

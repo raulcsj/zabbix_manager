@@ -132,18 +132,13 @@
         </el-timeline-item>
       </el-timeline>
     </div>
-    <div style="text-align: right">
-      <el-button @click.stop="cancel">
-        取消
-      </el-button>
-      <el-button type="primary" @click.stop="select">
-        确认
-      </el-button>
-    </div>
   </div>
 </template>
 
 <script>
+
+import { debounce } from '@/utils'
+
 export default {
   name: 'ConditionSelect',
   props: {
@@ -209,6 +204,10 @@ export default {
             filterConditions.length > 0 ? groupItem.conditionLabel = filterConditions[0].label : ''
           })
         })
+
+        debounce(() => {
+          this.$emit('input', val)
+        }, 100)()
       },
       deep: true
     }
@@ -251,13 +250,6 @@ export default {
       if (groupIndex !== -1) {
         this.groups.splice(groupIndex, 1)
       }
-    },
-    cancel() {
-      this.$emit('cancel')
-    },
-    select() {
-      this.$emit('input', this.groups)
-      this.$emit('cancel')
     }
   }
 }

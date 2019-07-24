@@ -41,6 +41,12 @@ const exampleRouter = [
         meta: { title: 'TreeInput', icon: 'tree' }
       },
       {
+        path: 'bottomPanelExample',
+        name: 'BottomPanelExample',
+        component: () => import('@/views/example/BottomPanel'),
+        meta: { title: 'BottomPanel', icon: 'fas fa-pager' }
+      },
+      {
         path: 'nested',
         component: () => import('@/components/BlankRouterView'),
         name: 'Nested',

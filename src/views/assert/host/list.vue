@@ -117,10 +117,6 @@
   </div>
 </template>
 
-<style scoped>
-
-</style>
-
 <script>
 import { fetchList } from '@/api/host'
 import waves from '@/directive/waves' // waves directive
