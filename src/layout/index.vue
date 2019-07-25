@@ -1,6 +1,7 @@
 <template>
   <div :class="classObj" class="app-wrapper">
     <div v-if="device==='mobile'&&sidebar.opened" class="drawer-bg" @click="handleClickOutside" />
+    <top-header />
     <sidebar class="sidebar-container" />
     <div :class="{hasTagsView:needTagsView}" class="main-container">
       <div :class="{'fixed-header':fixedHeader}">
@@ -13,13 +14,14 @@
 </template>
 
 <script>
-import { Navbar, Sidebar, AppMain, TagsView } from './components'
+import { TopHeader, Navbar, Sidebar, AppMain, TagsView } from './components'
 import ResizeMixin from './mixin/ResizeHandler'
 import { mapState } from 'vuex'
 
 export default {
   name: 'Layout',
   components: {
+    TopHeader,
     Navbar,
     Sidebar,
     AppMain,
@@ -78,7 +80,7 @@ export default {
 
   .fixed-header {
     position: fixed;
-    top: 0;
+    top: $topHeaderHeight;
     right: 0;
     z-index: 9;
     width: calc(100% - #{$sideBarWidth});

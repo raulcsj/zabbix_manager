@@ -192,12 +192,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  @import "~@/styles/variables.scss";
 .tags-view-container {
-  height: 34px;
+  height: $tagsViewHeight;
   width: 100%;
   background: #fff;
   border-bottom: 1px solid #d8dce5;
-  /*box-shadow: 0 1px 4px 0px rgba(0,21,41,.08);*/
   .tags-view-wrapper {
     .tags-view-item {
       display: inline-block;

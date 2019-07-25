@@ -1,7 +1,7 @@
 <template>
   <div class="login-container">
     <div class="header">
-      <div><img class="zabbix-logo" src="@/assets/login_images/zabbix_logo.png" width="130" height="30" alt="zabbix"></div><div class="title">一体化运营平台</div>
+      <div><img class="zabbix-logo" src="@/assets/login_images/zabbix_logo.png" width="130" height="30" alt="zabbix"></div><div class="title">{{ title | showTitle }}</div>
     </div>
 
     <el-row :gutter="20">
@@ -59,7 +59,7 @@
       </el-col>
     </el-row>
     <div class="copyright">
-      <p>©2019 上海宏时数据系统有限公司. All Rights Reserved</p>
+      <p>© 上海宏时数据系统有限公司. All Rights Reserved</p>
     </div>
   </div>
 </template>
@@ -67,8 +67,15 @@
 <script>
 import { validUsername } from '@/utils/validate'
 
+import { mapState } from 'vuex'
+
 export default {
   name: 'Login',
+  filters: {
+    showTitle(title) {
+      return title.replace('zabbix', '')
+    }
+  },
   data() {
     const validateUsername = (rule, value, callback) => {
       if (!validUsername(value)) {
@@ -97,6 +104,11 @@ export default {
       passwordType: 'password',
       redirect: undefined
     }
+  },
+  computed: {
+    ...mapState({
+      title: state => state.settings.title
+    })
   },
   watch: {
     $route: {

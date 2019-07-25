@@ -21,7 +21,7 @@ const assertRouter = [
             path: 'list',
             component: () => import('@/views/assert/host/list'),
             name: 'HostList',
-            meta: { title: '主机设备管理', icon: 'fas fa-server' }
+            meta: { title: '主机设备管理', icon: 'fas fa-server', breadcrumb: false }
           },
           {
             path: 'create',

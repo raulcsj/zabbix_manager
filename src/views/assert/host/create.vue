@@ -2,7 +2,7 @@
   <div>
     <sticky :z-index="100" :sticky-top="stickyTop" :class-name="'sub-navbar'">
       <div style="width: 100%;text-align: right">
-        <el-button icon="fas fa-save" @click="save">
+        <el-button icon="fas fa-save" type="primary" @click="save">
           保存
         </el-button>
       </div>
@@ -84,6 +84,7 @@
 
 <script>
 import Sticky from '@/components/Sticky' // 粘性header组件
+import variables from '@/styles/variables.scss'
 
 export default {
   name: 'CreateHost',
@@ -94,7 +95,6 @@ export default {
     return {
       popperAppendToBody: false,
       popperClass: 'hidden-popper',
-      stickyTop: 82,
       activeName: 'first',
       postForm: {
         id: undefined,
@@ -103,6 +103,13 @@ export default {
         ip: []
       },
       rules: {}
+    }
+  },
+  computed: {
+    stickyTop() {
+      return parseInt(variables.topHeaderHeight.replace('px', '')) +
+        parseInt(variables.navbarHeight.replace('px', '')) +
+        parseInt(variables.tagsViewHeight.replace('px', ''))
     }
   },
   methods: {

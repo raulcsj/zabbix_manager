@@ -124,6 +124,7 @@ import Sticky from '@/components/Sticky' // 粘性header组件
 import { parseTime } from '@/utils'
 import Pagination from '@/components/Pagination' // secondary package based on el-pagination
 import AdvancedFilter from '@/components/AdvancedFilter' // secondary package based on el-pagination
+import variables from '@/styles/variables.scss'
 
 export default {
   name: 'HostListTable',
@@ -146,7 +147,6 @@ export default {
   data() {
     return {
       showBottomPanel: false,
-      stickyTop: 84,
       tableKey: 0,
       list: null,
       total: 0,
@@ -170,6 +170,13 @@ export default {
         type: 'datetimerange'
       }],
       advancedFilterConditions: []
+    }
+  },
+  computed: {
+    stickyTop() {
+      return parseInt(variables.topHeaderHeight.replace('px', '')) +
+        parseInt(variables.navbarHeight.replace('px', '')) +
+        parseInt(variables.tagsViewHeight.replace('px', ''))
     }
   },
   created() {
