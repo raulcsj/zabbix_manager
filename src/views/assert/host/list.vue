@@ -10,7 +10,7 @@
           />
         </el-col>
         <el-col :xs="8" :sm="8" :md="8" :lg="6" :xl="4" style="text-align: right">
-          <el-button icon="fas fa-plus" :disabled="listLoading" @click="handleCreate">
+          <el-button plain icon="fas fa-plus" :disabled="listLoading" @click="handleCreate">
             新增
           </el-button>
           <el-button
@@ -100,8 +100,8 @@
         </el-table-column>
         <el-table-column label="操作" align="center" width="140" fixed="right">
           <template slot-scope="{row}">
-            <el-button type="primary" size="mini" icon="el-icon-edit" @click="handleEdit(row)" />
-            <el-button type="danger" size="mini" icon="el-icon-delete" @click="handleDelete(row)" />
+            <el-button type="primary" plain circle size="mini" icon="el-icon-edit" @click="handleEdit(row)" />
+            <el-button type="danger" plain circle size="mini" icon="el-icon-delete" @click="handleDelete(row)" />
           </template>
         </el-table-column>
       </el-table>
@@ -224,13 +224,9 @@ export default {
       }))
     },
     advancedSearch() {
-      if (this.advancedFilterConditions.length === 0) {
-        this.$message('请选择至少一个条件!')
-      } else {
-        this.listQuery.advancedFilterConditions = this.advancedFilterConditions
-        this.listQuery.page = 1
-        this.getList()
-      }
+      this.listQuery.advancedFilterConditions = this.advancedFilterConditions
+      this.listQuery.page = 1
+      this.getList()
     }
   }
 }

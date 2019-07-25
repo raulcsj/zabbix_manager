@@ -17,7 +17,6 @@
                 <el-table-column
                   label="字段"
                   align="center"
-                  style="width: 30%"
                 >
                   <template slot-scope="scope">
                     <el-select
@@ -38,7 +37,6 @@
                 <el-table-column
                   label="条件"
                   align="center"
-                  style="width: 30%"
                 >
                   <template slot-scope="scope">
                     <el-select v-model="scope.row.condition" style="width: 100%" placeholder="请选择">
@@ -54,7 +52,6 @@
                 <el-table-column
                   label="值"
                   align="center"
-                  style="width: 30%"
                 >
                   <template slot-scope="scope">
                     <div v-if="scope.row.type === 'string'">
