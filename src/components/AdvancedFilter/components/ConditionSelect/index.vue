@@ -191,6 +191,9 @@ export default {
     value: {
       handler: function(val) {
         this.groups = val
+        if (this.groups.length === 0) {
+          this.addGroup()
+        }
       }
     },
     groups: {
@@ -199,17 +202,17 @@ export default {
           group.forEach((groupItem) => {
             const filterFields = this.fieldOptions.filter((fieldOption) => fieldOption.value === groupItem.field)
             if (filterFields.length > 0) {
-              groupItem.type = filterFields[0].type ? filterFields[0].type : 'string'
-              groupItem.label = filterFields[0].label ? filterFields[0].label : ''
+              this.$set(groupItem, 'type', filterFields[0].type ? filterFields[0].type : 'string')
+              this.$set(groupItem, 'label', filterFields[0].label ? filterFields[0].label : '')
             }
             const filterConditions = this.conditionOptions.filter((conditionOption) => conditionOption.value === groupItem.condition)
-            filterConditions.length > 0 ? groupItem.conditionLabel = filterConditions[0].label : ''
+            filterConditions.length > 0 ? this.$set(groupItem, 'conditionLabel', filterConditions[0].label) : ''
           })
         })
-
+        // 防抖
         debounce(() => {
           this.$emit('input', val)
-        }, 100)()
+        }, 500)()
       },
       deep: true
     }

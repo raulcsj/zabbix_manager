@@ -1,16 +1,17 @@
 <template>
   <div class="advanced-filter-container" style="width:100%;overflow: hidden">
     <tag-groups-input class="input-with-select">
-      <el-select slot="prepend" v-model="select" clearable placeholder="请选择常用">
-        <el-option label="餐厅名" value="1" />
-        <el-option label="订单号" value="2" />
-        <el-option label="用户电话" value="3" />
+      <el-select slot="prepend" v-model="select" clearable placeholder="请选择常用" @change="commonChange">
+        <el-option label="常用过滤器1" value="1" />
+        <el-option label="常用过滤器2" value="2" />
+        <el-option label="常用过滤器3" value="3" />
       </el-select>
       <slot slot="inner">
         <capsule-group v-model="selectedCondition" @click="handleCreate" />
       </slot>
-      <el-button slot="append" icon="el-icon-plus" @click="handleCreate" />
-      <el-button slot="append" icon="el-icon-search" @click="handleSearch" />
+      <el-button slot="append" icon="fas fa-eraser" @click="clearSelect" />
+      <el-button slot="append" icon="fas fa-plus" @click="handleCreate" />
+      <el-button slot="append" icon="fas fa-search" @click="handleSearch" />
     </tag-groups-input>
     <bottom-panel :visible.sync="show" title="条件选择" title-icon="fas fa-list">
       <condition-select v-model="selectedCondition" :field-options="fieldOptions" @cancel="cancelSelect" />
@@ -82,7 +83,21 @@ export default {
   watch: {
     selectedCondition: {
       handler: function(val) {
-        this.$emit('input', val)
+        const tmpGroups = []
+
+        val.forEach(group => {
+          const tmpGroup = []
+          group.forEach(item => {
+            if (item.field !== '' && item.condition !== '' && item.value !== '') {
+              tmpGroup.push(item)
+            }
+          })
+          if (tmpGroup.length > 0) {
+            tmpGroups.push(tmpGroup)
+          }
+        })
+
+        this.$emit('input', tmpGroups)
       },
       deep: true
     }
@@ -96,7 +111,6 @@ export default {
     },
     clearSelect() {
       this.selectedCondition = []
-      this.$emit('input', [])
     },
     openSaveMessageBox() {
       this.$prompt('请输入名称', '提示', {
@@ -113,6 +127,17 @@ export default {
           message: '取消输入'
         })
       })
+    },
+    commonChange(val) {
+      this.clearSelect()
+      if (val) {
+        this.selectedCondition.push([{
+          condition: 'like',
+          field: 'hostName',
+          key: 1564108557637,
+          value: '一'
+        }])
+      }
     },
     handleSearch() {
       this.$emit('search')

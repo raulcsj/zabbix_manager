@@ -114,7 +114,7 @@ export default {
     height: 22px;
     margin: 5px 4px 0 0;
     padding: 0 10px;
-    max-width:475px;
+    max-width: 475px;
     overflow: hidden;
   }
 </style>
